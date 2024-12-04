@@ -237,11 +237,11 @@ If DEFAULT is non-nil, set the default mode-line for all buffers."
         (setq helm-ag-show-status-function #'doom-modeline-set-helm-modeline))
     (progn
       ;; Restore mode-line
-      (let ((original-format (doom-modeline--original-value 'mode-line-format)))
-        (setq-default mode-line-format original-format)
+      (let ((original-format (doom-modeline--original-value 'header-line-format)))
+        (setq-default header-line-format original-format)
         (dolist (buf (buffer-list))
           (with-current-buffer buf
-            (setq mode-line-format original-format))))
+            (setq header-line-format original-format))))
 
       ;; For flymake
       (setq flymake-mode-line-format (doom-modeline--original-value 'flymake-mode-line-format))

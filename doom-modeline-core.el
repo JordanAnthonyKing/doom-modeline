@@ -1118,11 +1118,11 @@ is to make it easier to do so.
 
 This function is like `redisplay' with non-nil FORCE argument,
 but it will only trigger a redisplay when there is a non nil
-`mode-line-format' and the height of the mode-line is different
+`header-line-format' and the height of the mode-line is different
 from that of the `default' face. This function is intended to be
 used as an advice to window creation functions."
       (when (and (bound-and-true-p doom-modeline-mode)
-                 mode-line-format
+                 header-line-format
                  (/= (frame-char-height) (window-mode-line-height)))
         (redisplay t))))
   (advice-add #'fit-window-to-buffer :before #'doom-modeline-redisplay))
@@ -1328,8 +1328,8 @@ Throws an error if it doesn't exist."
 If DEFAULT is non-nil, set the default mode-line for all buffers."
   (when-let* ((modeline (doom-modeline key)))
     (setf (if default
-              (default-value 'mode-line-format)
-            mode-line-format)
+              (default-value 'header-line-format)
+            header-line-format)
           (list "%e" modeline))))
 
 ;;
